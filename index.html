@@ -4,9 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <input type="file" name="file" id="fileinput"  onchange="olvas(this)">
+    <div class="container">
+        <input type="file" name="file" id="fileinput"  onchange="olvas(this)">
+    </div>
+    <div class="idk">1</div>
 
 </body>
 <script>
@@ -57,7 +61,65 @@
             }
             
             console.log("legmagasabb hegycsúcs: " + max.nev + " , " + max.magassag + " m");
+
+            let beolvmagassag = parseInt(window.prompt("Irj be egy magasságot!"))
+            console.log("beolvasott magasság: " + beolvmagassag + " m");
+            let van = false;
+
+            for (const h of hegyek) {
+                if(h.hegyseg === "Börzsöny" && h.magassag > beolvmagassag){
+                    van = true;
+                    break;
+                }
+                
+            }
+            if(van){
+                console.log("van magasabb")
+            }
+            else{
+                console.log("Nincs magasabb")
+            }
+            
+
+            const lab = 3.280839895
+            let db = 0;
+            for (const h of hegyek) {
+                if(h.magassag * lab > 3000){
+                    db++;
+                }
+            }
+            console.log("3000 lábnál magasabb hegyek száma: " + db);
+
+            let hegysegek = new Set();
+            for (const h of hegyek) {
+                hegysegek.add(h.hegyseg);
+            }
+
+            for(const hegyseg of hegysegek){
+                let db = 0;
+                for (const h of hegyek) {
+                    if(h.hegyseg === hegyseg){
+                        db++;
+                    }
+                }
+                console.log(hegyseg + ": " + db + " db");
+            }
+
+
+            for (const h of hegyek) {
+                if(h.hegyseg === "Bükk-vidék"){
+                    let labmagas = Math.round(h.magassag * lab* 10) / 10;
+                    console.log(h.nev + ";" +labmagas)
+                }
+            }
+
+
+
+
         }   
+
+
+
         
     }
 </script>

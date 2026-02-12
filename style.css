@@ -1,0 +1,13 @@
+body{
+    display: flex;
+    justify-content: flex-start;
+}
+
+.container{
+    
+    padding: 20px;
+    
+}
+.idk{background-color: red;
+    justify-content: flex-end;
+    width: 40%;}
